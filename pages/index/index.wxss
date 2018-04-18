@@ -1,0 +1,32 @@
+/**index.wxss**/
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  align-items: center;
+  padding: 20rpx 10rpx;
+  font-size: 40rpx;
+}
+.title {
+  padding: 15rpx 25rpx;
+  background-color: #eee;
+  font-size: 30rpx;
+}
+.pairedList-item {
+  padding: 25rpx 20rpx;
+  border-bottom: 1px solid #eee;
+  margin: 0 20rpx;
+}
+.pairedList-item .name {
+  font-size: 36rpx;
+}
+.pairedList-item .status {
+  font-size: 28rpx;
+  color: red;
+}
+.noPaired {
+  text-align: center;
+  font-size: 32rpx;
+  color: #999;
+  padding: 20rpx;
+}
