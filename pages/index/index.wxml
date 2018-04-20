@@ -15,7 +15,6 @@
       </view>
     </view> -->
     <view class='unpaired'>
-    <button bindtap='connect'>6666666</button>
       <view class='title'>可用设备</view>
       <view class='pairedList noPaired' wx:if='{{unpaired.length == 0}}'>{{noPaired}}</view>
       <view class='pairedList' wx:else>

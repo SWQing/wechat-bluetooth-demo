@@ -62,9 +62,11 @@ Page({
         [currentList]: '正在建立连接...',
         isConnectDeviceId: e.currentTarget.dataset.deviceid
       })
+      // 停止搜索
+      that.stopBluetoothDevicesDiscovery();
       if (that.data.currentConnectDeviceId != null) {
         //断开蓝牙连接
-        that.closeBLEConnection(currentList, e.currentTarget.dataset.deviceid);
+        that.closeBLEConnection(currentList, that.data.currentConnectDeviceId, e.currentTarget.dataset.deviceid);
       } else {
         //蓝牙连接
         that.createBLEConnection(currentList, e.currentTarget.dataset.deviceid);
@@ -244,22 +246,19 @@ Page({
       fail: function(res) {
         console.log(res);
         console.log('连接建立失败');
+        // 继续搜索蓝牙设备
+        that.startBluetoothDevicesDiscovery();
         that.setData({
-          [currentList]: '连接建立失败'
+          [currentList]: ''
         })
-        setTimeout(function () {
-          that.setData({
-            [currentList]: ''
-          })
-        }, 1000)
       }
     })
   },
   // 断开连接低功耗蓝牙设备
-  closeBLEConnection(currentList, deviceId) {
+  closeBLEConnection(currentList, firstDeviceId, deviceId) {
     var that = this;
     wx.closeBLEConnection({
-      deviceId: deviceId,
+      deviceId: firstDeviceId,
       success: function(res) {
         console.log(res);
         console.log('连接已断开');
@@ -408,12 +407,4 @@ Page({
       console.log(res);
     })
   },
-  //
-  connect() {
-    wx.getConnectedBluetoothDevices({
-      success: function(res) {
-        console.log(res);
-      },
-    })
-  }
 })
